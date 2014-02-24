@@ -7,6 +7,7 @@ import cgi
 class Validator(object):
 
     def __init__(self, action, data):
+        self.action = action
         self.data = data
         self.validate_method = {
             'init': self.validate_data_init,
@@ -14,8 +15,9 @@ class Validator(object):
             # new validators come here
             # 'name': self.validate_data_name,
         }
-        self.validate_method[action]()
 
+    def execute(self):
+        return self.validate_method[self.action]()
 
     def __validate_process(self, mandatory_field_list, optional_fields_dict={}):
         data = self.__check_mandatory_args(mandatory_field_list)
@@ -34,7 +36,7 @@ class Validator(object):
         return data
 
     def __check_optional_args(self, initial_data, options_dict):
-        for option_name, default_value in options_dict:
+        for option_name, default_value in options_dict.iteritems():
             initial_data[option_name] = self.data.get(option_name, default_value)
 
         return initial_data

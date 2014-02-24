@@ -5,6 +5,14 @@ from lib.gateclient import GateClient
 
 class testGateClient(TestCase):
 
-    def test_GateClient(self):
-        gate_client = GateClient('123',"1234")
-        assert (gate_client.access_data, '123')
+    def setUp(self):
+        self.gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+    def test_constructor_check_url_success(self):
+        self.assertEquals(self.gate_client.access_data['apiUrl'], 'https://www.payment-api.com')
+
+    def test_constructor_check_guid_success(self):
+        self.assertEquals(self.gate_client.access_data['guid'], 'AAAA-AAAA-AAAA-AAAA')
+
+    def test_constructor_check_verifySSL_success(self):
+        self.assertTrue(self.gate_client.access_data['verifySSL'])
