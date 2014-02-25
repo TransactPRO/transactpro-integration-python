@@ -63,3 +63,10 @@ response = gate_client.charge ({
         'cvv'                 : '555',
         'expire'              : '02/14'})
 ```
+
+### Refund
+```python
+response = gate_client.refund ({
+        'init_transaction_id' : transaction_id[1],
+        'amount_to_refund'    : 40})
+```

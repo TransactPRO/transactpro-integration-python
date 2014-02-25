@@ -10,8 +10,7 @@ class Validator(object):
         self.validate_method = {
             'init': self.validate_data_init,
             'charge': self.validate_data_charge,
-            # new validators come here
-            # 'name': self.validate_data_name,
+            'refund': self.validate_data_refund,
         }
 
     def execute(self):
@@ -53,4 +52,6 @@ class Validator(object):
         optional_fields_dict = { 'f_extended': 5 }
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
-
+    def validate_data_refund(self):
+        mandatory_field_list = ['init_transaction_id', 'amount_to_refund']
+        return self.__validate_process(mandatory_field_list)

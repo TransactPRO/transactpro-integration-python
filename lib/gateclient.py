@@ -11,6 +11,7 @@ class GateClient:
 
     def __build_data(self, data):
         data['guid'] = self.access_data['guid']
+        data['account_guid'] = self.access_data['guid']
         data['pwd'] = self.access_data['pwd']
         return data
 
@@ -25,3 +26,9 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('charge', request_data)
+
+    def refund(self, data):
+        validator = Validator('refund', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('refund', request_data)
