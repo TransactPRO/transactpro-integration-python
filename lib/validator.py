@@ -46,7 +46,7 @@ class Validator(object):
     def validate_data_init(self):
         mandatory_field_list = ['rs', 'merchant_transaction_id', 'description', 'amount', 'currency', 'name_on_card',
                                 'street', 'zip', 'city', 'country', 'phone', 'merchant_site_url']
-        optional_fields_dict = { 'user_ip': cgi.escape(os.environ["REMOTE_ADDR"]), 'state': 'NA', 'email': '',
+        optional_fields_dict = { 'user_ip': '127.0.0.1', 'state': 'NA', 'email': '',
                                  'card_bin': '', 'bin_name': '', 'bin_phone': '' }
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 

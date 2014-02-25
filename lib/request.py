@@ -18,7 +18,6 @@ class Request(object):
         curl.setopt(pycurl.URL, self.url + action)
         curl.setopt(pycurl.FAILONERROR, True)
         curl.setopt(pycurl.FOLLOWLOCATION, 1)
-        curl.setopt(pycurl.RETURNTRANSFER, True)
         curl.setopt(pycurl.TIMEOUT, 30)
         curl.setopt(pycurl.POST, True)
         if self.verifySSL:
