@@ -1,5 +1,3 @@
-__author__ = 'olga'
-
 import errors
 import os
 import cgi
