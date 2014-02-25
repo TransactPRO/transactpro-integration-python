@@ -50,7 +50,7 @@ response = gate_client.init({
 ```python
 response = gate_client.charge ({
         'f_extended'          : '5',
-        'init_transaction_id' : transaction_id[1],
+        'init_transaction_id' : 'c811f6504791085cdd569e6a440c4f292b0f0003',
         'cc'                  : '5413330000000019',
         'cvv'                 : '589',
         'expire'              : '01/15'})
