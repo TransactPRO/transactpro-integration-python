@@ -3,10 +3,10 @@ Library provide ability to make requests to TransactPRO Gateway API (Documention
 # Installation
 ### Git
 
-Download project from Github, with downloading zip file or using
+Download project from Github, with downloading zip file or using git clone
 
 
-### Git
+### Pip
 Use pip to install requirements
 
 pip install -r requirements.txt
