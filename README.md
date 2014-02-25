@@ -1,6 +1,6 @@
 Library provide ability to make requests to TransactPRO Gateway API (Documention 2.16).
 
-### Installation
+## Installation
 
 Download project from Github, with downloading zip file or using
 ```
@@ -12,6 +12,14 @@ Use pip to install requirements
 pip install -r requirements.txt
 ```
 
+## Usage
+### Create gate client
+| Field     | Mandatory | Type   | Description                                                          |
+|-----------|-----------|--------|----------------------------------------------------------------------|
+| apiUrl    | yes       | string | Api URL. Can be aquired via Integration manual.                      |
+| guid      | yes       | string | Merchant GUID.                                                       |
+| pwd       | yes       | string | Unecrypted password. It will be encrypted by client.                 |
+| verifySSL | no        | bool   | Default: ```true```. Must be set to ```false``` for test environment |
 
 ### Basic client
 ```python
