@@ -1,5 +1,6 @@
 __author__ = 'olga'
 
+import hashlib
 from unittest import TestCase
 from lib.gateclient import GateClient
 
@@ -13,6 +14,10 @@ class testGateClient(TestCase):
 
     def test_constructor_check_guid_success(self):
         self.assertEquals(self.gate_client.access_data['guid'], 'AAAA-AAAA-AAAA-AAAA')
+
+    def test_constructor_check_pass_success(self):
+        password = hashlib.sha1('111')
+        self.assertEquals(self.gate_client.access_data['pwd'], password.hexdigest())
 
     def test_constructor_check_verifySSL_success(self):
         self.assertTrue(self.gate_client.access_data['verifySSL'])

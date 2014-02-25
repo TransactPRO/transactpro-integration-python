@@ -1,5 +1,3 @@
-__author__ = 'olga'
-
 from unittest import TestCase
 from lib.request import Request
 

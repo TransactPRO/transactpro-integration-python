@@ -1,5 +1,3 @@
-__author__ = 'olga'
-
 from unittest import TestCase
 from lib.validator import Validator
 from lib.errors import MissingFieldException

@@ -13,12 +13,12 @@ class Request(object):
 
     def executeRequest(self, action, post_data):
         curl = pycurl.Curl()   #main handler for Curl actions
+        print post_data
 
         # Setting request params
         curl.setopt(pycurl.URL, self.url + action)
         curl.setopt(pycurl.FAILONERROR, True)
         curl.setopt(pycurl.FOLLOWLOCATION, 1)
-        curl.setopt(pycurl.RETURNTRANSFER, True)
         curl.setopt(pycurl.TIMEOUT, 30)
         curl.setopt(pycurl.POST, True)
         if self.verifySSL:
