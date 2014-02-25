@@ -14,9 +14,9 @@ pip install -r requirements.txt
 
 
 #### Basic client
-
+```python
 gate_client = GateClient('http://example.com', 'AAAA-1111-1111-1111', 'mypass')
-
+```
 
 ### Actions
 GateClient instance provide number of actions, such as 'init' or 'charge'.
