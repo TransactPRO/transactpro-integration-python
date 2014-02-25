@@ -63,7 +63,7 @@ class Validator(object):
         optional_fields_dict = {'description'}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
-    def charge_recurrent(self):
+    def validate_charge_recurrent(self):
         mandatory_field_list = ['init_transaction_id']
         optional_fields_dict = {'f_extended'}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
