@@ -1,19 +1,18 @@
 Library provide ability to make requests to TransactPRO Gateway API (Documention 2.16).
 
-# Installation
-### Git
+### Installation
 
-Download project from Github, with downloading zip file or using git clone
+Download project from Github, with downloading zip file or using
+```git clone https://github.com/pashira/transactpro-integration-python.git
+```
 
-
-### Pip
 Use pip to install requirements
-
+```
 pip install -r requirements.txt
+```
 
 
-
-#### Basic client
+### Basic client
 ```python
 gate_client = GateClient('http://example.com', 'AAAA-1111-1111-1111', 'mypass')
 ```
