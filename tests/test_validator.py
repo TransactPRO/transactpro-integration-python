@@ -2,7 +2,7 @@ from unittest import TestCase
 from lib.validator import Validator
 from lib.errors import MissingFieldException
 
-class testValidator(TestCase):
+class TestValidator(TestCase):
 
     def test_validate_charge_success(self):
         data = { 'init_transaction_id': 1, 'cc': '1234123412341234', 'cvv':'987', 'expire':'12/15'}
