@@ -20,6 +20,7 @@ pip install -r requirements.txt
 | guid      | yes       | string | Merchant GUID.                                                       |
 | pwd       | yes       | string | Unecrypted password. It will be encrypted by client.                 |
 | verifySSL | no        | bool   | Default: ```true```. Must be set to ```false``` for test environment |
+| save_card | no        | int    | Set ```1``` to process recurrent transactions                        |
 
 ### Basic client
 ```python

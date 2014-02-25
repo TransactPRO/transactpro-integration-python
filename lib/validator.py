@@ -11,6 +11,8 @@ class Validator(object):
             'init': self.validate_data_init,
             'charge': self.validate_data_charge,
             'refund': self.validate_data_refund,
+            'init_recurrent': self.validate_init_recurrent,
+            'charge_recurrent': self.validate_charge_recurrent,
         }
 
     def execute(self):
@@ -43,8 +45,8 @@ class Validator(object):
     def validate_data_init(self):
         mandatory_field_list = ['rs', 'merchant_transaction_id', 'description', 'amount', 'currency', 'name_on_card',
                                 'street', 'zip', 'city', 'country', 'phone', 'merchant_site_url']
-        optional_fields_dict = { 'user_ip': '127.0.0.1', 'state': 'NA', 'email': '',
-                                 'card_bin': '', 'bin_name': '', 'bin_phone': '' }
+        optional_fields_dict = {'user_ip': '127.0.0.1', 'state': 'NA', 'email': '',
+                                'card_bin': '', 'bin_name': '', 'bin_phone': '', 'save_card': None}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_charge(self):
@@ -55,3 +57,13 @@ class Validator(object):
     def validate_data_refund(self):
         mandatory_field_list = ['init_transaction_id', 'amount_to_refund']
         return self.__validate_process(mandatory_field_list)
+
+    def validate_init_recurrent(self):
+        mandatory_field_list = ['init_transaction_id', 'pwd', 'rs', 'original_init_id', 'merchant_transaction_id', 'amount']
+        optional_fields_dict = {'description'}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
+
+    def charge_recurrent(self):
+        mandatory_field_list = ['init_transaction_id']
+        optional_fields_dict = {'f_extended'}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
