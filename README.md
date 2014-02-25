@@ -24,7 +24,7 @@ All data passed into action are validated and if mandatory field missed, then ex
 Please check integration manual, to get more info about required data for each action.
 
 #### Init
-'''
+'''python
 response = gate_client.init({
         'rs': 'AAAA',
         'merchant_transaction_id' : '12112112323323',
@@ -47,7 +47,7 @@ response = gate_client.init({
 '''
 
 #### Charge
-'''
+'''python
 response = gate_client.charge ({
         'f_extended'          : '5',
         'init_transaction_id' : transaction_id[1],
