@@ -68,5 +68,5 @@ response = gate_client.charge ({
 ```python
 response = gate_client.refund ({
         'init_transaction_id' : 'c811f6504791085cdd569e6a440c4f292b0f0003',
-        'amount_to_refund'    : 40})
+        'amount_to_refund'    : '40'})
 ```
