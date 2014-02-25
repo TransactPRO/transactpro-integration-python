@@ -3,7 +3,8 @@ Library provide ability to make requests to TransactPRO Gateway API (Documention
 ### Installation
 
 Download project from Github, with downloading zip file or using
-```git clone https://github.com/pashira/transactpro-integration-python.git
+```
+git clone https://github.com/pashira/transactpro-integration-python.git
 ```
 
 Use pip to install requirements
