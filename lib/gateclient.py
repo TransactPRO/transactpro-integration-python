@@ -7,7 +7,8 @@ class GateClient:
 
     def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card = None):
         pwd_shal = hashlib.sha1(pwd)
-        self.access_data = {'apiUrl': apiUrl, 'guid': guid, 'pwd': pwd_shal.hexdigest(), 'verifySSL': verifySSL, 'save_card': save_card}
+        self.access_data = {'apiUrl': apiUrl, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
+                            'verifySSL': verifySSL, 'save_card': save_card}
 
     def __build_data(self, data):
         data['guid'] = self.access_data['guid']
