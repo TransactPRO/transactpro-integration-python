@@ -16,7 +16,8 @@ class Request(object):
         print post_data
 
         # Setting request params
-        curl.setopt(pycurl.URL, self.url + action)
+        self.action_url = self.url+action
+        curl.setopt(pycurl.URL, self.action_url)
         curl.setopt(pycurl.FAILONERROR, True)
         curl.setopt(pycurl.FOLLOWLOCATION, 1)
         curl.setopt(pycurl.TIMEOUT, 30)
