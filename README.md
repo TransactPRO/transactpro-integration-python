@@ -4,20 +4,19 @@ Library provide ability to make requests to TransactPRO Gateway API (Documention
 ### Git
 
 Download project from Github, with downloading zip file or using
-```git clone https://github.com/pashira/transactpro-integration-python.git
-```
+
 
 ### Git
 Use pip to install requirements
 
-```pip install -r requirements.txt
-```
+pip install -r requirements.txt
+
 
 
 #### Basic client
-```python
+
 gate_client = GateClient('http://example.com', 'AAAA-1111-1111-1111', 'mypass')
-'''
+
 
 ### Actions
 GateClient instance provide number of actions, such as 'init' or 'charge'.
@@ -25,7 +24,7 @@ All data passed into action are validated and if mandatory field missed, then ex
 Please check integration manual, to get more info about required data for each action.
 
 #### Init
-```python
+
 response = gate_client.init({
         'rs': 'AAAA',
         'merchant_transaction_id' : '12112112323323',
@@ -45,14 +44,13 @@ response = gate_client.init({
         'bin_name'                : 'BANK',
         'bin_phone'               : '+371 11111111',
         'merchant_site_url'       : 'https://example.com'})
-'''
+
 
 #### Charge
-'''python
+
 response = gate_client.charge ({
         'f_extended'          : '5',
         'init_transaction_id' : transaction_id[1],
         'cc'                  : '5413330000000019',
         'cvv'                 : '589',
         'expire'              : '01/15'})
-'''
