@@ -38,10 +38,10 @@ class GateClient:
         validator = Validator('init_recurrent', data)
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
-        return req.executeRequest('init', request_data)
+        return req.executeRequest('init_recurrent', request_data)
 
     def charge_recurrent(self, data):
         validator = Validator('charge_recurrent', data)
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
-        return req.executeRequest('charge', request_data)
+        return req.executeRequest('charge_recurrent', request_data)
