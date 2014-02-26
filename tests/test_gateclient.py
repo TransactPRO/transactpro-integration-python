@@ -4,8 +4,8 @@ import hashlib
 from unittest import TestCase
 from lib.gateclient import GateClient
 
-class testGateClient(TestCase):
 
+class testGateClient(TestCase):
     def setUp(self):
         self.gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 

@@ -4,6 +4,7 @@
 SUCCESS = True
 FAILURE = False
 
+
 class Response(object):
     def __init__(self, status, content):
         if status == SUCCESS:
@@ -12,11 +13,15 @@ class Response(object):
             self.status = FAILURE
         self.content = content
 
-    def isSuccess(self):
+    def is_success(self):
         return self.status == SUCCESS
 
-    def getStatus(self):
+    def get_status(self):
         return self.status
 
-    def getContent(self):
+    def get_content(self):
+        return self.content
+
+    def get_formated_content(self):
+        self.content.split(':', 1)
         return self.content

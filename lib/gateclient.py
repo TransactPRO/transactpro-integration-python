@@ -3,9 +3,9 @@ import hashlib
 from lib.request import Request
 from lib.validator import Validator
 
-class GateClient:
 
-    def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card = None):
+class GateClient:
+    def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card=None):
         pwd_shal = hashlib.sha1(pwd)
         self.access_data = {'apiUrl': apiUrl, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
                             'verifySSL': verifySSL, 'save_card': save_card}
@@ -45,3 +45,27 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('charge_recurrent', request_data)
+
+    def init_dms(self, data):
+        validator = Validator('init_dms', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('init_dms', request_data)
+
+    def make_hold(self, data):
+        validator = Validator('make_hold', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('make_hold', request_data)
+
+    def charge_hold(self, data):
+        validator = Validator('charge_hold', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('charge_hold', request_data)
+
+    def cancel_dms(self, data):
+        validator = Validator('cancel_dms', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('cancel_dms', request_data)

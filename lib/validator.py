@@ -2,8 +2,8 @@ import errors
 import os
 import cgi
 
-class Validator(object):
 
+class Validator(object):
     def __init__(self, action, data):
         self.action = action
         self.data = data
@@ -13,6 +13,10 @@ class Validator(object):
             'refund': self.validate_data_refund,
             'init_recurrent': self.validate_init_recurrent,
             'charge_recurrent': self.validate_charge_recurrent,
+            'init_dms': self.validate_data_init,
+            'make_hold': self.validate_data_charge,
+            'charge_hold': self.validate_charge_hold,
+            'cancel_dms': self.validate_data_refund,
         }
 
     def execute(self):
@@ -36,8 +40,8 @@ class Validator(object):
 
     def __check_optional_args(self, initial_data, options_dict):
         for option_name, default_value in options_dict.iteritems():
-            initial_data[option_name] = self.data.get(option_name, default_value)
-
+            if self.data.get(option_name, default_value) is not None or default_value != '':
+                initial_data[option_name] = self.data.get(option_name, default_value)
         return initial_data
 
     # Here comes all validate methods
@@ -51,7 +55,7 @@ class Validator(object):
 
     def validate_data_charge(self):
         mandatory_field_list = ['init_transaction_id', 'cc', 'cvv', 'expire']
-        optional_fields_dict = { 'f_extended': '' }
+        optional_fields_dict = {'f_extended': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_refund(self):
@@ -59,11 +63,17 @@ class Validator(object):
         return self.__validate_process(mandatory_field_list)
 
     def validate_init_recurrent(self):
-        mandatory_field_list = ['rs', 'original_init_id', 'merchant_transaction_id', 'amount']
-        optional_fields_dict = {'description':''}
-        return self.__validate_process(mandatory_field_list, optional_fields_dict)
+        mandatory_field_list = ['rs', 'original_init_id', 'merchant_transaction_id', 'amount', 'description']
+        return self.__validate_process(mandatory_field_list)
 
     def validate_charge_recurrent(self):
         mandatory_field_list = ['init_transaction_id']
         optional_fields_dict = {'f_extended': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
+
+    def validate_data_init_dms(self):
+        return self.validate_data_init
+
+    def validate_charge_hold(self):
+        mandatory_field_list = ['init_transaction_id']
+        return self.__validate_process(mandatory_field_list)

@@ -5,17 +5,18 @@ import pycurl
 import response
 import urllib
 
-class Request(object):
 
+class Request(object):
     def __init__(self, url, verifySSL=True):
         self.url = url + '/gwprocessor2.php?a='
         self.verifySSL = verifySSL
 
     def executeRequest(self, action, post_data):
-        curl = pycurl.Curl()   #main handler for Curl actions
+        curl = pycurl.Curl()  #main handler for Curl actions
+        print post_data
 
         # Setting request params
-        self.action_url = self.url+action
+        self.action_url = self.url + action
         curl.setopt(pycurl.URL, self.action_url)
         curl.setopt(pycurl.FAILONERROR, True)
         curl.setopt(pycurl.FOLLOWLOCATION, 1)
