@@ -36,8 +36,7 @@ class Validator(object):
 
     def __check_optional_args(self, initial_data, options_dict):
         for option_name, default_value in options_dict.iteritems():
-            if default_value is not None:
-                initial_data[option_name] = self.data.get(option_name, default_value)
+            initial_data[option_name] = self.data.get(option_name, default_value)
 
         return initial_data
 
@@ -47,12 +46,12 @@ class Validator(object):
         mandatory_field_list = ['rs', 'merchant_transaction_id', 'description', 'amount', 'currency', 'name_on_card',
                                 'street', 'zip', 'city', 'country', 'phone', 'merchant_site_url']
         optional_fields_dict = {'user_ip': '127.0.0.1', 'state': 'NA', 'email': '',
-                                'card_bin': '', 'bin_name': '', 'bin_phone': '', 'save_card': None}
+                                'card_bin': '', 'bin_name': '', 'bin_phone': '', 'save_card': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_charge(self):
         mandatory_field_list = ['init_transaction_id', 'cc', 'cvv', 'expire']
-        optional_fields_dict = { 'f_extended': 5 }
+        optional_fields_dict = { 'f_extended': '' }
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_refund(self):
@@ -61,10 +60,10 @@ class Validator(object):
 
     def validate_init_recurrent(self):
         mandatory_field_list = ['rs', 'original_init_id', 'merchant_transaction_id', 'amount']
-        optional_fields_dict = {'description': None}
+        optional_fields_dict = {'description':''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_charge_recurrent(self):
         mandatory_field_list = ['init_transaction_id']
-        optional_fields_dict = {'f_extended': None}
+        optional_fields_dict = {'f_extended': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
