@@ -60,11 +60,12 @@ class Validator(object):
         return self.__validate_process(mandatory_field_list)
 
     def validate_init_recurrent(self):
-        mandatory_field_list = ['init_transaction_id', 'pwd', 'rs', 'original_init_id', 'merchant_transaction_id', 'amount']
-        optional_fields_dict = {'description'}
+        mandatory_field_list = ['init_transaction_id', 'pwd', 'rs', 'original_init_id', 'merchant_transaction_id', 'amount', 'user_ip',
+                                'name_on_card', 'currency', 'description', 'street', 'zip', 'city', 'country', 'state', 'email', 'phone', 'card_bin']
+        optional_fields_dict = {'description': None}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_charge_recurrent(self):
-        mandatory_field_list = ['init_transaction_id']
-        optional_fields_dict = {'f_extended'}
+        mandatory_field_list = ['init_transaction_id', 'cc', 'cvv', 'expire']
+        optional_fields_dict = {'f_extended': None}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
