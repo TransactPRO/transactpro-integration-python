@@ -1,5 +1,13 @@
 Library provide ability to make requests to TransactPRO Gateway API (Documention 2.16).
 
+## About
+**Author**: Olga Zdanchuk
+**Contact**: zdanchuk@gmail.com
+
+Library provide ability to make requests to TransactPRO Gateway API.
+Library are supported by me, and not by TransactPRO. So, submit all requests, issues and questions directly here (on GitHub). Library provided as is.
+You must adopt library for your projects by yourselves, I only provide basic functionality to make requests.
+
 ## Installation
 
 Download project from Github, with downloading zip file or using
@@ -35,39 +43,98 @@ Please check integration manual, to get more info about required data for each a
 #### Init
 ```python
 response = gate_client.init({
-        'rs': 'AAAA',
-        'merchant_transaction_id' : '12112112323323',
-        'user_ip'                 : '127.0.0.1',
-        'description'             : 'Test description',
-        'amount'                  : '1000',
-        'currency'                : 'USD',
-        'name_on_card'            : 'Vasyly Pupkin',
-        'street'                  : 'Main street 1',
-        'zip'                     : 'LV-0000',
-        'city'                    : 'Riga',
-        'country'                 : 'LV',
-        'state'                   : 'NA',
-        'email'                   : 'email@example.lv',
-        'phone'                   : '+371 11111111',
-        'card_bin'                : '511111',
-        'bin_name'                : 'BANK',
-        'bin_phone'               : '+371 11111111',
-        'merchant_site_url'       : 'https://example.com'})
+    'rs': 'AAAA',
+    'merchant_transaction_id': '1212121212',
+    'user_ip': '127.0.0.1',
+    'description': 'Test description',
+    'amount': '1000',
+    'currency': 'USD',
+    'name_on_card': 'Vasyly Pupkin',
+    'street': 'Main street 1',
+    'zip': 'LV-0000',
+    'city': 'Riga',
+    'country': 'LV',
+    'state': 'NA',
+    'email': 'email@example.lv',
+    'phone': '+371 11111111',
+    'card_bin': '511111',
+    'bin_name': 'BANK',
+    'bin_phone': '+371 11111111',
+    'merchant_site_url': 'https://example.com'})
 ```
 
 #### Charge
 ```python
 response = gate_client.charge ({
-        'f_extended'          : '5',
-        'init_transaction_id' : 'c811f6504791085cdd569e6a440c4f292b0f0003',
-        'cc'                  : '1111111111111111,
-        'cvv'                 : '555',
-        'expire'              : '02/14'})
+    'f_extended': '5',
+    'init_transaction_id': 'c811f6504791085cdd569e6a440c4f292b0f0003',
+    'cc': '1111111111111111',
+    'cvv': '222',
+    'expire': '01/15'})
 ```
 
 #### Refund
 ```python
 response = gate_client.refund ({
-        'init_transaction_id' : 'c811f6504791085cdd569e6a440c4f292b0f0003',
-        'amount_to_refund'    : '40'})
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
+    'amount_to_refund': '9'})
+```
+
+#### Recount
+```python
+response = gate_client.charge_recurrent({
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'})
+```
+
+#### Init DMS
+```python
+response = gate_client.init_dms({
+    'rs': 'AAAA',
+    'merchant_transaction_id': '1212121212',
+    'user_ip': '127.0.0.1',
+    'description': 'Test description',
+    'amount': '1000',
+    'currency': 'USD',
+    'name_on_card': 'Vasyly Pupkin',
+    'street': 'Main street 1',
+    'zip': 'LV-0000',
+    'city': 'Riga',
+    'country': 'LV',
+    'state': 'NA',
+    'email': 'email@example.lv',
+    'phone': '+371 11111111',
+    'card_bin': '511111',
+    'bin_name': 'BANK',
+    'bin_phone': '+371 11111111',
+    'merchant_site_url': 'https://example.com'})
+```
+
+#### Make hold
+```python
+response = gate_client.make_hold({
+    'f_extended': '5',
+    'merchant_transaction_id': '1212121212',
+    'cc': '1111111111111111',
+    'cvv': '222',
+    'expire': '01/15'})
+```
+
+#### Charge hold
+```python
+response = gate_client.charge_hold({
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea']})
+```
+
+#### Cancel DMS
+```python
+response = gate_client.cancel_dms({
+    'init_transaction_id':  '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
+    'amount_to_refund': '1000'})
+```
+
+## Tests
+
+Run the nosetests command
+```
+nosetests
 ```
