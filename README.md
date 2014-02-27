@@ -1,11 +1,11 @@
 TransactPRO Python integration
 ===============
+[![Build Status](https://travis-ci.org/TransactPRO/transactpro-integration-python.png?branch=master)](https://travis-ci.org/TransactPRO/transactpro-integration-python)
 [![Coverage Status](https://coveralls.io/repos/TransactPRO/transactpro-integration-python/badge.png)](https://coveralls.io/r/TransactPRO/transactpro-integration-python)
+
 ## About
 
-
 **Author**: Olga Zdanchuk
-
 **Contact**: zdanchuk@gmail.com
 
 
