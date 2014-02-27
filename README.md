@@ -1,3 +1,6 @@
+TransactPRO Python integration
+===============
+[![Coverage Status](https://coveralls.io/repos/TransactPRO/transactpro-integration-python/badge.png)](https://coveralls.io/r/TransactPRO/transactpro-integration-python)
 ## About
 
 
