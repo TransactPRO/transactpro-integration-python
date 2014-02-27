@@ -3,7 +3,6 @@ Library provide ability to make requests to TransactPRO Gateway API (Documention
 ## About
 
 **Author**: Olga Zdanchuk
-
 **Contact**: zdanchuk@gmail.com
 
 Library provide ability to make requests to TransactPRO Gateway API.
