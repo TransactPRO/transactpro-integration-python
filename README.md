@@ -5,6 +5,7 @@ Library provide ability to make requests to TransactPRO Gateway API (Documention
 **Author**: Olga Zdanchuk
 **Contact**: zdanchuk@gmail.com
 
+
 Library provide ability to make requests to TransactPRO Gateway API.
 Library are supported by me, and not by TransactPRO. So, submit all requests, issues and questions directly here (on GitHub). Library provided as is.
 You must adopt library for your projects by yourselves, I only provide basic functionality to make requests.
