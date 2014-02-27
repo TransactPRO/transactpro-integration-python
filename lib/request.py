@@ -13,7 +13,6 @@ class Request(object):
 
     def executeRequest(self, action, post_data):
         curl = pycurl.Curl()  #main handler for Curl actions
-        print post_data
 
         # Setting request params
         self.action_url = self.url + action
