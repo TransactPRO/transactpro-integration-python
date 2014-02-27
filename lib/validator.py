@@ -40,7 +40,6 @@ class Validator(object):
 
     def __check_optional_args(self, initial_data, options_dict):
         for option_name, default_value in options_dict.iteritems():
-            if self.data.get(option_name, default_value) is not None or default_value != '':
                 initial_data[option_name] = self.data.get(option_name, default_value)
         return initial_data
 
