@@ -1,7 +1,9 @@
 Library provide ability to make requests to TransactPRO Gateway API (Documention 2.16).
 
 ## About
+
 **Author**: Olga Zdanchuk
+
 **Contact**: zdanchuk@gmail.com
 
 Library provide ability to make requests to TransactPRO Gateway API.
