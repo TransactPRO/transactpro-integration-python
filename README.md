@@ -1,7 +1,6 @@
 ## About
 
 **Author**: Olga Zdanchuk
-
 **Contact**: zdanchuk@gmail.com
 
 
