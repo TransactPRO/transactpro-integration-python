@@ -72,9 +72,6 @@ class Validator(object):
         optional_fields_dict = {'f_extended': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
-    def validate_data_init_dms(self):
-        return self.validate_data_init
-
     def validate_charge_hold(self):
         mandatory_field_list = ['init_transaction_id']
         return self.__validate_process(mandatory_field_list)
