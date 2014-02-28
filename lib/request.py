@@ -3,7 +3,7 @@
 import pycurl
 import response
 import urllib
-
+import StringIO
 
 class Request(object):
     def __init__(self, url, verifySSL=True):
