@@ -23,5 +23,16 @@ class Response(object):
         return self.content
 
     def get_formated_content(self):
-        self.content.split(':', 1)
-        return self.content
+        if self.get_status() == FAILURE:
+            return []
+
+        parsedResponse = {}
+        key_value_pairs = self.content.split('~')
+        print key_value_pairs
+        for keyValuePair in key_value_pairs:
+            keyValue = keyValuePair.split(':', 1)
+            if keyValue[1] is not None:
+                parsedResponse[keyValue[0]] = keyValue[1]
+            else:
+                parsedResponse[keyValue[0]] = ''
+        return parsedResponse
