@@ -26,11 +26,6 @@ class Request(object):
         curl.setopt(pycurl.POSTFIELDS, urllib.urlencode(post_data))
 
         # Required for reading output
-        try:
-            import StringIO
-        except:
-            from io import StringIO
-
         buffer = StringIO.StringIO()
 
         curl.setopt(pycurl.WRITEFUNCTION, buffer.write)
