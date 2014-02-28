@@ -40,16 +40,18 @@ class Validator(object):
 
     def __check_optional_args(self, initial_data, options_dict):
         for option_name, default_value in options_dict.iteritems():
+            if self.data.get(option_name) is not None or default_value != '':
                 initial_data[option_name] = self.data.get(option_name, default_value)
         return initial_data
 
     # Here comes all validate methods
 
     def validate_data_init(self):
-        mandatory_field_list = ['rs', 'merchant_transaction_id', 'description', 'amount', 'currency', 'name_on_card',
-                                'street', 'zip', 'city', 'country', 'phone', 'merchant_site_url']
-        optional_fields_dict = {'user_ip': '127.0.0.1', 'state': 'NA', 'email': '',
-                                'card_bin': '', 'bin_name': '', 'bin_phone': '', 'save_card': ''}
+        mandatory_field_list = ['rs', 'merchant_transaction_id', 'user_ip',  'description', 'amount', 'currency',
+                                'name_on_card', 'street', 'zip', 'city', 'country', 'email', 'phone', 'merchant_site_url']
+        optional_fields_dict = {'state': 'NA',  'card_bin': 'NA', 'bin_name': 'NA', 'bin_phone': '',
+                                'save_card': '', 'shipping_phone': '', 'shipping_email': '', 'shipping_state': '',
+                                'shipping_country': '', 'shipping_city': '', 'shipping_zip': '',  'shipping_street': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_charge(self):

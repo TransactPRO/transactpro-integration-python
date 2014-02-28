@@ -7,7 +7,7 @@ class TestValidator(TestCase):
     def test_validate_charge_success(self):
         data = {'init_transaction_id': 1, 'cc': '1234123412341234', 'cvv': '987', 'expire': '12/15'}
         validator = Validator('charge', data)
-        expected = dict(data.items() + {'f_extended': ''}.items())
+        expected = dict(data.items())
         self.assertEquals(validator.execute(), expected)
 
     def test_validate_charge_raise_mandatory_error(self):
