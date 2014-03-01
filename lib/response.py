@@ -22,17 +22,14 @@ class Response(object):
     def get_content(self):
         return self.content
 
-    def get_formated_content(self):
-        if self.get_status() == FAILURE:
-            return []
+    def get_formatted_content(self):
+        if self.status == FAILURE:
+            return {}
 
-        parsedResponse = {}
+        parsed_response = {}
         key_value_pairs = self.content.split('~')
-        print key_value_pairs
-        for keyValuePair in key_value_pairs:
-            keyValue = keyValuePair.split(':', 1)
-            if keyValue[1] is not None:
-                parsedResponse[keyValue[0]] = keyValue[1]
-            else:
-                parsedResponse[keyValue[0]] = ''
-        return parsedResponse
+
+        for pair in key_value_pairs:
+            (key, value) = pair.split(':', 1)
+            parsed_response[key] = value
+        return parsed_response
