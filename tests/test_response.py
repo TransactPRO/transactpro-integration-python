@@ -16,7 +16,7 @@ class TestResponse(TestCase):
 
     def test_get_formatted_content_failure(self):
         resp = Response(FAILURE, "Any error test")
-        self.assertEquals(resp.get_formatted_content(), [])
+        self.assertEquals(resp.get_formatted_content(), {})
 
     def test_get_formatted_content_success(self):
         resp = Response(SUCCESS, "id:13~result:success~ip:127.0.0.1")
