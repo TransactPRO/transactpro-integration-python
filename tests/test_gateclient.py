@@ -59,8 +59,7 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data = {}
-        result_data = gate_client.init(initial_data)
+        result_data = gate_client.init(self.init_data)
         expected_data = { 'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('init', expected_data)
