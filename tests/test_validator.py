@@ -110,12 +110,12 @@ class TestValidator(TestCase):
         validator = Validator('init_dms', data)
         self.assertEquals(validator.execute(), data)
 
-    def validate_charge_hold(self):
+    def test_validate_charge_hold(self):
         data = {'init_transaction_id': 1}
         validator = Validator('charge_hold', data)
         self.assertEquals(validator.execute(), data)
 
-    def validate_cancel_dms(self):
+    def test_validate_cancel_dms(self):
         data = {'init_transaction_id': '1212321323213213', 'amount_to_refund': '40'}
         validator = Validator('charge_hold', data)
         self.assertEquals(validator.execute(), data)
