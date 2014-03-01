@@ -117,5 +117,5 @@ class TestValidator(TestCase):
 
     def test_validate_cancel_dms(self):
         data = {'init_transaction_id': '1212321323213213', 'amount_to_refund': '40'}
-        validator = Validator('charge_hold', data)
+        validator = Validator('cancel_dms', data)
         self.assertEquals(validator.execute(), data)
