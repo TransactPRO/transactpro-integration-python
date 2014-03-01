@@ -8,7 +8,7 @@ install:
   - pip install coveralls
 
 script:
-  - nosetests --with-coverage
+  - nosetests --with-coverage --cover-package=lib
 
 after_success:
   - coveralls
