@@ -4,8 +4,6 @@ from lib.request import Request
 from lib.validator import Validator
 
 
-
-
 class GateClient:
     def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card=None):
         pwd_shal = hashlib.sha1(pwd)

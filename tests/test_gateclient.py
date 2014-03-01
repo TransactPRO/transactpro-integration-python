@@ -27,8 +27,8 @@ class TestGateClient(TestCase):
             'bin_phone': '+371 11111111',
             'merchant_site_url': 'https://example.com'}
 
-    sucsessful_response = 'OK:123'
-    unsucsessful_response = 'ERROR:123'
+    successful_response = 'OK:123'
+    unsuccessful_response = 'ERROR:123'
 
     def setUp(self):
         self.gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
