@@ -8,19 +8,20 @@ TransactPRO Python integration
 **Author**: Olga Zdanchuk
 **Contact**: zdanchuk@gmail.com
 
-
-Library provide ability to make requests to TransactPRO Gateway API.
+Library provide ability to make requests to TransactPRO Gateway API based on "Integration manual v216".
+Library in written on Python 2.7 and code has been tested on Python 2.6 and 2.7.
 Library are supported by me, and not by TransactPRO. So, submit all requests, issues and questions directly here (on GitHub). Library provided as is.
 You must adopt library for your projects by yourselves, I only provide basic functionality to make requests.
 
+
 ## Installation
 
-Download project from Github, with downloading zip file or using
+Download project from Github, with downloading zip file or using:
 ```
 git clone https://github.com/pashira/transactpro-integration-python.git
 ```
-
-Use pip to install requirements
+Use Python 2.7.
+Use pip to install requirements:
 ```
 pip install -r requirements.txt
 ```
