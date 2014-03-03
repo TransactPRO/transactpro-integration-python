@@ -80,6 +80,24 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('charge', expected_data)
 
+    @patch('lib.gateclient.Validator')
+    @patch('lib.gateclient.Request')
+    def test_init_dms_request(self, req_mock, validator_mock):
+        validator_class = Mock()
+        validator_class.execute.return_value = {}
+        validator_mock.return_value = validator_class
+
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        result_data = gate_client.init_dms(self.init_data)
+        expected_data = { 'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('init_dms', expected_data)
+
     @patch('lib.gateclient.Request')
     def test_charge_hold_request(self, req_mock):
         req_class = Mock()
