@@ -119,3 +119,10 @@ class TestValidator(TestCase):
         data = {'init_transaction_id': '1212321323213213', 'amount_to_refund': '40'}
         validator = Validator('cancel_dms', data)
         self.assertEquals(validator.execute(), data)
+
+    def test_validate_status(self):
+        data = {'init_transaction_id': '1212321323213213'}
+        validator = Validator('status', data)
+        data['request_type'] = 'transaction_status'
+        data['f_extended'] = '5'
+        self.assertEquals(validator.execute(), data)

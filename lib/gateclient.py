@@ -69,3 +69,9 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('cancel_dms', request_data)
+
+    def status(self, data):
+        validator = Validator('status', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('status_request', request_data)

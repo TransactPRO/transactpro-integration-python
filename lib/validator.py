@@ -17,6 +17,7 @@ class Validator(object):
             'make_hold': self.validate_data_charge,
             'charge_hold': self.validate_charge_hold,
             'cancel_dms': self.validate_data_refund,
+            'status': self.validate_data_status,
         }
 
     def execute(self):
@@ -75,3 +76,8 @@ class Validator(object):
     def validate_charge_hold(self):
         mandatory_field_list = ['init_transaction_id']
         return self.__validate_process(mandatory_field_list)
+
+    def validate_data_status(self):
+        mandatory_field_list = ['init_transaction_id']
+        optional_fields_dict = {'f_extended': '5', 'request_type': 'transaction_status'}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
