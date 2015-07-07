@@ -128,7 +128,7 @@ response = gate_client.make_hold({
 #### Charge hold
 ```python
 response = gate_client.charge_hold({
-    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea']})
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'})
 ```
 
 #### Cancel DMS
@@ -136,6 +136,12 @@ response = gate_client.charge_hold({
 response = gate_client.cancel_dms({
     'init_transaction_id':  '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
     'amount_to_refund': '1000'})
+```
+
+#### Payment status
+```python
+response = gate_client.status({
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'})
 ```
 
 ## Tests
