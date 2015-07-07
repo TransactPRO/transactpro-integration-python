@@ -104,13 +104,30 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data =  initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'merchant_transaction_id': 12121, 'rs': 'AAAA', 'description': 'la la la', 'amount': 100}
+        initial_data =  {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'merchant_transaction_id': 12121, 'rs': 'AAAA', 'description': 'la la la', 'amount': 100}
         result_data = gate_client.init_recurrent(initial_data)
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
+    
+        @patch('lib.gateclient.Request')
+        
+    def test_charge_recurrent(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        initial_data = {'init_transaction_id': 1, 'cc': '1234123412341234', 'cvv': '666', 'expire': '12/13', 'f_extended': 5}
+        result_data = gate_client.charge_recurrent(initial_data)
+        expected_data = initial_data
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('charge_recurrent', expected_data)
 
     @patch('lib.gateclient.Validator')
     @patch('lib.gateclient.Request')
