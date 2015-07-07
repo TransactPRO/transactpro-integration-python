@@ -112,8 +112,7 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
     
-        @patch('lib.gateclient.Request')
-        
+    @patch('lib.gateclient.Request')
     def test_charge_recurrent(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
