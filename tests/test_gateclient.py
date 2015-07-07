@@ -88,12 +88,12 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data = {'init_transaction_id': 1, 'cc': '1234123412341234', 'cvv': '666', 'expire': '12/13', 'f_extended': 5, 'amount_to_refund': 100}
+        initial_data = {'init_transaction_id': 1, 'amount_to_refund': 100}
         result_data = gate_client.refund(initial_data)
         expected_data = initial_data
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('refund', expected_data)
 
     @patch('lib.gateclient.Validator')
@@ -178,10 +178,10 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data = {'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'}
+        initial_data = {'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'f_extended': '5', 'request_type': 'transaction_status'}
         result_data = gate_client.status(initial_data)
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('status', expected_data)
