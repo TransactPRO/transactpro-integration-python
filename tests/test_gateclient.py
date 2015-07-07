@@ -110,6 +110,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['original_init_id'] = '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
 
     @patch('lib.gateclient.Validator')
