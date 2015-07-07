@@ -95,6 +95,22 @@ class TestGateClient(TestCase):
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('refund', expected_data)
+        
+    @patch('lib.gateclient.Request')
+    def test_init_recurrent_request(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        initial_data = {'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'amount_to_refund': '9'}
+        result_data = gate_client.init_recurrent(initial_data)
+        expected_data = initial_data
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
 
     @patch('lib.gateclient.Validator')
     @patch('lib.gateclient.Request')
@@ -184,4 +200,4 @@ class TestGateClient(TestCase):
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        req_class.executeRequest.assert_called_once_with('status', expected_data)
+        req_class.executeRequest.assert_called_once_with('status_request', expected_data)
