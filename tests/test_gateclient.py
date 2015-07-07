@@ -104,7 +104,7 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data = init_data
+        initial_data = self.init_data
         result_data = gate_client.init_recurrent(initial_data)
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
