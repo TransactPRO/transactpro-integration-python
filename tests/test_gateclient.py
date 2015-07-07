@@ -89,7 +89,7 @@ class TestGateClient(TestCase):
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
         initial_data = {'init_transaction_id': 1, 'cc': '1234123412341234', 'cvv': '666', 'expire': '12/13', 'f_extended': 5}
-        result_data = gate_client.charge(initial_data)
+        result_data = gate_client.refund(initial_data)
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
