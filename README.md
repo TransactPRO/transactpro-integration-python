@@ -138,6 +138,12 @@ response = gate_client.cancel_dms({
     'amount_to_refund': '1000'})
 ```
 
+#### Payment status
+```python
+response = gate_client.status({
+    'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea']})
+```
+
 ## Tests
 
 Run the nosetests command
