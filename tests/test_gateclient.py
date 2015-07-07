@@ -104,7 +104,7 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data =  initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'merchant_transaction_id': 12121, 'rs': 'AAAA', 'description': 'la la la'}
+        initial_data =  initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'merchant_transaction_id': 12121, 'rs': 'AAAA', 'description': 'la la la', 'amount': 100}
         result_data = gate_client.init_recurrent(initial_data)
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
