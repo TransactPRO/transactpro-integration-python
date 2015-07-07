@@ -104,13 +104,12 @@ class TestGateClient(TestCase):
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
 
-        initial_data = self.init_data
+        initial_data =  initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea', 'merchant_transaction_id': 12121, 'rs': 'AAAA', 'description': 'la la la'}
         result_data = gate_client.init_recurrent(initial_data)
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        expected_data['original_init_id'] = '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
 
     @patch('lib.gateclient.Validator')
