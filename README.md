@@ -16,15 +16,11 @@ You must adopt library for your projects by yourselves, I only provide basic fun
 
 ## Installation
 
-Download project from Github, with downloading zip file or using:
+Install with pip:
 ```
-git clone https://github.com/pashira/transactpro-integration-python.git
+pip install -e https://github.com/TransactPRO/transactpro-integration-python#egg=transactpro
 ```
 Use Python 2.7.
-Use pip to install requirements:
-```
-pip install -r requirements.txt
-```
 
 ## Usage
 ### Create gate client

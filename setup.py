@@ -7,7 +7,7 @@ def read(fname):
 
 
 setup(
-        name='transactpro-integration-python',
+        name='transactpro',
         description='TransactPRO Python integration',
         long_description=read('README.md'),
         author='Olga Zdanchuk',
@@ -17,6 +17,13 @@ setup(
         url='https://github.com/TransactPRO/transactpro-integration-python',
         keywords=[],
         license='BSD',
+        install_requires=[
+            'mock==1.0.1',
+            'nose==1.3.0',
+            'coverage==3.7.1',
+            'pycurl==7.19.3.1',
+            'wsgiref==0.1.2',
+        ],
         classifiers=[
             'Development Status :: 3 - Alpha',
             'Intended Audience :: Developers',
