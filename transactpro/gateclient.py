@@ -1,7 +1,7 @@
 import hashlib
 
-from lib.request import Request
-from lib.validator import Validator
+from .request import Request
+from .validator import Validator
 
 
 class GateClient:
