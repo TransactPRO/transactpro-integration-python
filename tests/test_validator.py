@@ -1,6 +1,6 @@
 from unittest import TestCase
-from lib.validator import Validator
-from lib.errors import MissingFieldException
+from transactpro.validator import Validator
+from transactpro.errors import MissingFieldException
 
 
 class TestValidator(TestCase):

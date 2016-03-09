@@ -2,7 +2,7 @@ __author__ = 'olga'
 
 import hashlib
 from unittest import TestCase
-from lib.gateclient import GateClient
+from transactpro.gateclient import GateClient
 from mock import patch, Mock
 
 class TestGateClient(TestCase):
@@ -46,8 +46,8 @@ class TestGateClient(TestCase):
     def test_constructor_check_verifySSL_success(self):
         self.assertTrue(self.gate_client.access_data['verifySSL'])
 
-    @patch('lib.gateclient.Validator')
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Validator')
+    @patch('transactpro.gateclient.Request')
     def test_init_request(self, req_mock, validator_mock):
         validator_class = Mock()
         validator_class.execute.return_value = {}
@@ -64,7 +64,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('init', expected_data)
 
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_charge_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -80,7 +80,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('charge', expected_data)
         
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_refund_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -96,7 +96,7 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('refund', expected_data)
         
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_init_recurrent_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -112,7 +112,7 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
     
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_charge_recurrent(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -130,8 +130,8 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('charge_recurrent', expected_data)
 
-    @patch('lib.gateclient.Validator')
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Validator')
+    @patch('transactpro.gateclient.Request')
     def test_init_dms_request(self, req_mock, validator_mock):
         validator_class = Mock()
         validator_class.execute.return_value = {}
@@ -148,7 +148,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('init_dms', expected_data)
 
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_make_hold_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -169,7 +169,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('make_hold', expected_data)
 
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_charge_hold_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -185,7 +185,7 @@ class TestGateClient(TestCase):
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('charge_hold', expected_data)
 
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_cancel_dms_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
@@ -204,7 +204,7 @@ class TestGateClient(TestCase):
         req_class.executeRequest.assert_called_once_with('cancel_dms', expected_data)
         
     
-    @patch('lib.gateclient.Request')
+    @patch('transactpro.gateclient.Request')
     def test_status_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None

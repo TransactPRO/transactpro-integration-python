@@ -1,5 +1,5 @@
 from unittest import TestCase
-from lib.response import Response, SUCCESS, FAILURE
+from transactpro.response import Response, SUCCESS, FAILURE
 
 
 class TestResponse(TestCase):
