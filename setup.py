@@ -12,7 +12,7 @@ setup(
         long_description=read('README.md'),
         author='Olga Zdanchuk',
         author_email='zdanchuk@gmail.com',
-        packages=['transact-pro-integration-python'],
+        packages=['transactpro_integration'],
         version='0.1',
         url='https://github.com/TransactPRO/transactpro-integration-python',
         keywords=[],
