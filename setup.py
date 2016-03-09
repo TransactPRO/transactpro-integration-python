@@ -7,7 +7,7 @@ def read(fname):
 
 
 setup(
-        name='transact-pro-integration-python',
+        name='transactpro-integration-python',
         description='TransactPRO Python integration',
         long_description=read('README.md'),
         author='Olga Zdanchuk',
