@@ -34,6 +34,7 @@ Use Python 2.7.
 
 ### Basic client
 ```python
+from transactpro.gateclient import GateClient
 gate_client = GateClient('http://example.com', 'AAAA-1111-1111-1111', 'mypass')
 ```
 
