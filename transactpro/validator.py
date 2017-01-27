@@ -50,16 +50,17 @@ class Validator(object):
     # Here comes all validate methods
 
     def validate_data_init(self):
-        mandatory_field_list = ['rs', 'merchant_transaction_id', 'user_ip',  'description', 'amount', 'currency',
-                                'name_on_card', 'street', 'zip', 'city', 'country', 'email', 'phone', 'merchant_site_url']
-        optional_fields_dict = {'state': 'NA',  'card_bin': 'NA', 'bin_name': 'NA', 'bin_phone': '',
+        mandatory_field_list = ['rs', 'merchant_transaction_id', 'user_ip', 'description', 'amount', 'currency',
+                                'name_on_card', 'street', 'zip', 'city', 'country', 'email', 'phone',
+                                'merchant_site_url']
+        optional_fields_dict = {'state': 'NA', 'card_bin': 'NA', 'bin_name': 'NA', 'bin_phone': '',
                                 'save_card': '', 'shipping_phone': '', 'shipping_email': '', 'shipping_state': '',
-                                'shipping_country': '', 'shipping_city': '', 'shipping_zip': '',  'shipping_street': ''}
+                                'shipping_country': '', 'shipping_city': '', 'shipping_zip': '', 'shipping_street': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_charge(self):
         mandatory_field_list = ['init_transaction_id', 'cc', 'cvv', 'expire']
-        optional_fields_dict = {'f_extended': ''}
+        optional_fields_dict = {'f_extended': '', 'merchant_referring_url': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_refund(self):
