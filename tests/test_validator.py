@@ -126,3 +126,66 @@ class TestValidator(TestCase):
         data['request_type'] = 'transaction_status'
         data['f_extended'] = '5'
         self.assertEquals(validator.execute(), data)
+
+    def test_validate_init_credit(self):
+        data = {
+            'rs': 'AAAA',
+            'merchant_transaction_id': '1234567890',
+            'user_ip': '127.0.0.1',
+            'description': 'Test description',
+            'amount': '1000',
+            'currency': 'USD',
+            'name_on_card': 'Vasyly Pupkin',
+            'street': 'Main street 1',
+            'zip': 'LV-0000',
+            'city': 'Riga',
+            'country': 'LV',
+            'state': 'California',
+            'email': 'email@example.lv',
+            'phone': '+371 11111111',
+            'card_bin': '511111',
+            'bin_name': 'BANK',
+            'bin_phone': '+371 11111111',
+            'merchant_site_url': 'https://example.com'}
+        validator = Validator('init_credit', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_do_credit(self):
+        data = {'init_transaction_id': 'aASDLKJL1237123717313798asda',
+                'cc': '1234123412341234',
+                'expire': '12/20'}
+        validator = Validator('do_credit', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_init_p2p(self):
+        data = {
+            'cardname': 'BAT CAT',
+            'recipient_name': 'CAT WOMAN',
+            'client_birth_date': '06161981',
+            'rs': 'AAAA',
+            'merchant_transaction_id': '1234567890',
+            'user_ip': '127.0.0.1',
+            'description': 'Test description',
+            'amount': '1000',
+            'currency': 'USD',
+            'name_on_card': 'Vasyly Pupkin',
+            'street': 'Main street 1',
+            'zip': 'LV-0000',
+            'city': 'Riga',
+            'country': 'LV',
+            'state': 'California',
+            'email': 'email@example.lv',
+            'phone': '+371 11111111',
+            'card_bin': '511111',
+            'bin_name': 'BANK',
+            'bin_phone': '+371 11111111',
+            'merchant_site_url': 'https://example.com'}
+        validator = Validator('init_p2p', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_do_p2p(self):
+        data = {'init_transaction_id': 'aASDLKJL1237123717313798asda',
+                'cc_2': '1234123412341234',
+                'expire2': '10/30'}
+        validator = Validator('do_p2p', data)
+        self.assertEquals(validator.execute(), data)
