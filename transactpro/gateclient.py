@@ -5,10 +5,10 @@ from .validator import Validator
 
 
 class GateClient:
-    def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card=None):
+    def __init__(self, api_url, guid, pwd, verify_ssl=True, save_card=None):
         pwd_shal = hashlib.sha1(pwd)
-        self.access_data = {'apiUrl': apiUrl, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
-                            'verifySSL': verifySSL, 'save_card': save_card}
+        self.access_data = {'apiUrl': api_url, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
+                            'verifySSL': verify_ssl, 'save_card': save_card}
 
     def __build_data(self, data):
         data['guid'] = self.access_data['guid']
@@ -75,3 +75,51 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('status_request', request_data)
+
+    def init_credit(self, data):
+        validator = Validator('init_credit', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('init_credit', request_data)
+
+    def do_credit(self, data):
+        validator = Validator('do_credit', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('do_credit', request_data)
+
+    def init_p2p(self, data):
+        validator = Validator('init_p2p', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('init_p2p', request_data)
+
+    def do_p2p(self, data):
+        validator = Validator('do_p2p', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('do_p2p', request_data)
+
+    def init_recurrent_credit(self, data):
+       validator = Validator('init_recurrent_credit', data)
+       request_data = self.__build_data(validator.execute())
+       req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+       return req.executeRequest('init_recurrent_credit', request_data)
+
+    def do_recurrent_credit(self, data):
+        validator = Validator('do_recurrent_credit', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('do_recurrent_credit', request_data)
+
+    def init_recurrent_p2p(self, data):
+        validator = Validator('init_recurrent_p2p', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('init_recurrent_p2p', request_data)
+
+    def do_recurrent_p2p(self, data):
+        validator = Validator('do_recurrent_p2p', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('do_recurrent_p2p', request_data)
