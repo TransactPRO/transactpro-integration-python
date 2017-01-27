@@ -52,18 +52,15 @@ class TestGateClient(TestCase):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
-
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
 
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         result_data = gate_client.init(self.init_data)
 
-        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA',
-                         'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
+                         'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init', expected_data)
 
     @patch('transactpro.gateclient.Request')
@@ -163,9 +160,8 @@ class TestGateClient(TestCase):
 
         result_data = gate_client.init_dms(self.init_data)
 
-        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA',
-                         'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
+                         'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init_dms', expected_data)
 
     @patch('transactpro.gateclient.Request')
@@ -259,8 +255,8 @@ class TestGateClient(TestCase):
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
         result_data = gate_client.init_credit(self.init_data)
 
-        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
+                         'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init_credit', expected_data)
 
     @patch('transactpro.gateclient.Validator')
@@ -282,8 +278,8 @@ class TestGateClient(TestCase):
                         'expire': '12/13'}
         result_data = gate_client.do_credit(initial_data)
 
-        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
+                         'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('do_credit', expected_data)
 
     @patch('transactpro.gateclient.Request')
@@ -304,3 +300,43 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('charge_recurrent', expected_data)
+
+
+    @patch('transactpro.gateclient.Validator')
+    @patch('transactpro.gateclient.Request')
+    def test_init_p2p(self, req_mock, validator_mock):
+        validator_class = Mock()
+        validator_class.execute.return_value = {}
+        validator_mock.return_value = validator_class
+
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        result_data = gate_client.init_p2p(self.init_data)
+
+        expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
+                         'pwd': hashlib.sha1('111').hexdigest()}
+        req_class.executeRequest.assert_called_once_with('init_p2p', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_do_p2p(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        initial_data = {'init_transaction_id': '2250fcc6fd231231CXCZC563453sdada23233fea',
+                        'cc': '1234123412341234',
+                        'cvv': '666',
+                        'cc_2': '9999999555554794'}
+        result_data = gate_client.do_p2p(initial_data)
+
+        expected_data = initial_data
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('do_p2p', expected_data)
