@@ -18,6 +18,8 @@ class Validator(object):
             'charge_hold': self.validate_charge_hold,
             'cancel_dms': self.validate_data_refund,
             'status': self.validate_data_status,
+            'init_credit': self.validate_data_init,
+            'do_credit': self.validate_data_charge
         }
 
     def execute(self):

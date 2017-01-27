@@ -86,3 +86,15 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('status_request', request_data)
+
+    def init_credit(self, data):
+        validator = Validator('init_credit', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('init_credit', request_data)
+
+    def do_credit(self, data):
+        validator = Validator('do_credit', data)
+        request_data = self.__build_data(validator.execute())
+        req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
+        return req.executeRequest('do_credit', request_data)
