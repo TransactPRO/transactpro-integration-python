@@ -98,3 +98,6 @@ class GateClient:
         request_data = self.__build_data(validator.execute())
         req = Request(self.access_data['apiUrl'], self.access_data['verifySSL'])
         return req.executeRequest('do_credit', request_data)
+
+    def recurrent_credit(self, data):
+        return self.charge_recurrent(data)

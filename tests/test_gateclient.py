@@ -285,3 +285,22 @@ class TestGateClient(TestCase):
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA'}
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('do_credit', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_recurrent_credit(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+
+        initial_data = {
+            'f_extended': '5',
+            'init_transaction_id': '121212'}
+        result_data = gate_client.recurrent_credit(initial_data)
+
+        expected_data = initial_data
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('charge_recurrent', expected_data)
