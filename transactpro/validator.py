@@ -21,7 +21,11 @@ class Validator(object):
             'init_credit': self.validate_data_init_credit,
             'do_credit': self.validate_data_do_credit,
             'init_p2p': self.validate_data_init_p2p,
-            'do_p2p': self.validate_data_do_p2p
+            'do_p2p': self.validate_data_do_p2p,
+            'init_recurrent_credit': self.validate_charge_recurrent,
+            'do_recurrent_credit': self.validate_charge_recurrent,
+            'init_recurrent_p2p': self.validate_charge_recurrent,
+            'do_recurrent_p2p': self.validate_charge_recurrent
         }
 
     def execute(self):
