@@ -189,3 +189,35 @@ class TestValidator(TestCase):
                 'expire2': '10/30'}
         validator = Validator('do_p2p', data)
         self.assertEquals(validator.execute(), data)
+
+    def test_validate_init_recurrent_credit(self):
+        data = {
+            'rs': '1223',
+            'original_init_id': 2,
+            'merchant_transaction_id': 1,
+            'amount': '1000',
+            'description': 'Recurrent money'}
+        validator = Validator('init_recurrent_credit', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_do_recurrent_credit(self):
+        data = {
+            'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'}
+        validator = Validator('do_recurrent_credit', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_init_recurrent_p2p(self):
+        data = {
+            'rs': '1223',
+            'original_init_id': 2,
+            'merchant_transaction_id': 1,
+            'amount': '1000',
+            'description': 'Recurrent money'}
+        validator = Validator('init_recurrent_p2p', data)
+        self.assertEquals(validator.execute(), data)
+
+    def test_validate_do_recurrent_p2p(self):
+        data = {
+            'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'}
+        validator = Validator('do_recurrent_p2p', data)
+        self.assertEquals(validator.execute(), data)
