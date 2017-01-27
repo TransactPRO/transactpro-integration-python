@@ -83,7 +83,7 @@ response = gate_client.refund ({
     'amount_to_refund': '9'})
 ```
 
-#### Recount
+#### Recurrent
 ```python
 response = gate_client.charge_recurrent({
     'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea'})
