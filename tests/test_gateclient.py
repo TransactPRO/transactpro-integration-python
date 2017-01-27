@@ -215,7 +215,7 @@ class TestGateClient(TestCase):
 
     @patch('transactpro.gateclient.Validator')
     @patch('transactpro.gateclient.Request')
-    def test_init_credit(self, req_mock, validator_mock):
+    def test_init_credit_request(self, req_mock, validator_mock):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
@@ -230,7 +230,7 @@ class TestGateClient(TestCase):
 
     @patch('transactpro.gateclient.Validator')
     @patch('transactpro.gateclient.Request')
-    def test_do_credit(self, req_mock, validator_mock):
+    def test_do_credit_request(self, req_mock, validator_mock):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
@@ -247,26 +247,9 @@ class TestGateClient(TestCase):
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('do_credit', expected_data)
 
-    @patch('transactpro.gateclient.Request')
-    def test_recurrent_credit(self, req_mock):
-        req_class = Mock()
-        req_class.executeRequest.return_value = None
-        req_mock.return_value = req_class
-        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-        initial_data = {
-            'f_extended': '5',
-            'init_transaction_id': '121212'}
-        result_data = gate_client.recurrent_credit(initial_data)
-        expected_data = initial_data
-        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
-        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
-        req_class.executeRequest.assert_called_once_with('charge_recurrent', expected_data)
-
-
     @patch('transactpro.gateclient.Validator')
     @patch('transactpro.gateclient.Request')
-    def test_init_p2p(self, req_mock, validator_mock):
+    def test_init_p2p_request(self, req_mock, validator_mock):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
@@ -283,7 +266,7 @@ class TestGateClient(TestCase):
         req_class.executeRequest.assert_called_once_with('init_p2p', expected_data)
 
     @patch('transactpro.gateclient.Request')
-    def test_do_p2p(self, req_mock):
+    def test_do_p2p_request(self, req_mock):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
@@ -298,3 +281,71 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('do_p2p', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_init_recurrent_credit_request(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+        initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
+                        'merchant_transaction_id': 12121,
+                        'rs': 'AAAA',
+                        'amount': 100,
+                        'description': 'Example: SDHC Memory card x 2'}
+        result_data = gate_client.init_recurrent_credit(initial_data)
+        expected_data = initial_data
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        req_class.executeRequest.assert_called_once_with('init_recurrent_credit', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_do_recurrent_credit_request(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+        initial_data = {
+            'f_extended': '5',
+            'init_transaction_id': '121212'}
+        result_data = gate_client.do_recurrent_credit(initial_data)
+        expected_data = initial_data
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('do_recurrent_credit', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_init_recurrent_p2p_request(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+        initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
+                        'merchant_transaction_id': 12121,
+                        'rs': 'AAAA',
+                        'amount': 100,
+                        'description': 'Example: SDHC Memory card x 2'}
+        result_data = gate_client.init_recurrent_p2p(initial_data)
+        expected_data = initial_data
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        req_class.executeRequest.assert_called_once_with('init_recurrent_p2p', expected_data)
+
+    @patch('transactpro.gateclient.Request')
+    def test_do_recurrent_p2p_request(self, req_mock):
+        req_class = Mock()
+        req_class.executeRequest.return_value = None
+        req_mock.return_value = req_class
+        gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
+        initial_data = {
+            'f_extended': '5',
+            'init_transaction_id': '121212'}
+        result_data = gate_client.do_recurrent_p2p(initial_data)
+        expected_data = initial_data
+        expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
+        expected_data['pwd'] = hashlib.sha1('111').hexdigest()
+        req_class.executeRequest.assert_called_once_with('do_recurrent_p2p', expected_data)
