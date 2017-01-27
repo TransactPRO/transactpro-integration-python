@@ -55,10 +55,8 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
         result_data = gate_client.init(self.init_data)
-
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init', expected_data)
@@ -68,16 +66,13 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'init_transaction_id': 1,
                         'cc': '1234123412341234',
                         'cvv': '666',
                         'expire': '12/13',
                         'f_extended': 5}
         result_data = gate_client.charge(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -89,12 +84,9 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'init_transaction_id': 1, 'amount_to_refund': 100}
         result_data = gate_client.refund(initial_data)
-
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -110,16 +102,13 @@ class TestGateClient(TestCase):
                         }
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'original_init_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
                         'merchant_transaction_id': 12121,
                         'rs': 'AAAA',
                         'description': 'la la la',
                         'amount': 100}
         result_data = gate_client.init_recurrent(initial_data)
-
         expected_data = initial_data
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -131,14 +120,11 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {
             'f_extended': '5',
             'init_transaction_id': '121212'}
         result_data = gate_client.charge_recurrent(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -151,15 +137,11 @@ class TestGateClient(TestCase):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
-
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         result_data = gate_client.init_dms(self.init_data)
-
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init_dms', expected_data)
@@ -169,9 +151,7 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {
             'f_extended': '5',
             'init_transaction_id': '121212',
@@ -179,7 +159,6 @@ class TestGateClient(TestCase):
             'cvv': '666',
             'expire': '01/17'}
         result_data = gate_client.make_hold(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -191,12 +170,9 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'init_transaction_id': 1}
         result_data = gate_client.charge_hold(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -208,14 +184,11 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {
             'init_transaction_id': '123123',
             'amount_to_refund': '1000'}
         result_data = gate_client.cancel_dms(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -227,14 +200,11 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'init_transaction_id': '2250fcc6fd097e7b9df02aa9b95bf46baa7f8fea',
                         'f_extended': '5',
                         'request_type': 'transaction_status'}
         result_data = gate_client.status(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
@@ -247,14 +217,11 @@ class TestGateClient(TestCase):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
-
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
         result_data = gate_client.init_credit(self.init_data)
-
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init_credit', expected_data)
@@ -265,11 +232,9 @@ class TestGateClient(TestCase):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
-
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
         initial_data = {'f_extended': '5',
                         'init_transaction_id': '2250fcc6fd231231CXCZC563453sdada23233fea',
@@ -277,7 +242,6 @@ class TestGateClient(TestCase):
                         'cvv': '666',
                         'expire': '12/13'}
         result_data = gate_client.do_credit(initial_data)
-
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('do_credit', expected_data)
@@ -287,14 +251,11 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {
             'f_extended': '5',
             'init_transaction_id': '121212'}
         result_data = gate_client.recurrent_credit(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
@@ -308,15 +269,11 @@ class TestGateClient(TestCase):
         validator_class = Mock()
         validator_class.execute.return_value = {}
         validator_mock.return_value = validator_class
-
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         result_data = gate_client.init_p2p(self.init_data)
-
         expected_data = {'guid': 'AAAA-AAAA-AAAA-AAAA', 'account_guid': 'AAAA-AAAA-AAAA-AAAA',
                          'pwd': hashlib.sha1('111').hexdigest()}
         req_class.executeRequest.assert_called_once_with('init_p2p', expected_data)
@@ -326,15 +283,12 @@ class TestGateClient(TestCase):
         req_class = Mock()
         req_class.executeRequest.return_value = None
         req_mock.return_value = req_class
-
         gate_client = GateClient('https://www.payment-api.com', 'AAAA-AAAA-AAAA-AAAA', '111')
-
         initial_data = {'init_transaction_id': '2250fcc6fd231231CXCZC563453sdada23233fea',
                         'cc': '1234123412341234',
                         'cvv': '666',
                         'cc_2': '9999999555554794'}
         result_data = gate_client.do_p2p(initial_data)
-
         expected_data = initial_data
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'

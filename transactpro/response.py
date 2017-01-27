@@ -32,7 +32,7 @@ class Response(object):
         for pair in key_value_pairs:
             try:
                 (key, value) = pair.split(':', 1)
-            except ValueError:      # This is case, when it errors to split "string:" into two strings
+            except ValueError:  # This is case, when it errors to split "string:" into two strings
                 key = pair.split(':', 1)[0]
                 value = ''
             parsed_response[key] = value

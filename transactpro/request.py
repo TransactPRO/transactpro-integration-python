@@ -5,13 +5,14 @@ import response
 import urllib
 import StringIO
 
+
 class Request(object):
     def __init__(self, url, verifySSL=True):
         self.url = url + '/gwprocessor2.php?a='
         self.verifySSL = verifySSL
 
     def executeRequest(self, action, post_data):
-        curl = pycurl.Curl()  #main handler for Curl actions
+        curl = pycurl.Curl()  # main handler for Curl actions
 
         # Setting request params
         self.action_url = self.url + action
