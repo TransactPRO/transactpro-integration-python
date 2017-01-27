@@ -18,8 +18,8 @@ class Validator(object):
             'charge_hold': self.validate_charge_hold,
             'cancel_dms': self.validate_data_refund,
             'status': self.validate_data_status,
-            'init_credit': self.validate_data_init,
-            'do_credit': self.validate_data_charge,
+            'init_credit': self.validate_data_init_credit,
+            'do_credit': self.validate_data_do_credit,
             'init_p2p': self.validate_data_init_p2p,
             'do_p2p': self.validate_data_do_p2p
         }
@@ -67,7 +67,8 @@ class Validator(object):
 
     def validate_data_refund(self):
         mandatory_field_list = ['init_transaction_id', 'amount_to_refund']
-        return self.__validate_process(mandatory_field_list)
+        optional_fields_dict = {'merchant_transaction_id': '', 'details': ''}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_init_recurrent(self):
         mandatory_field_list = ['rs', 'original_init_id', 'merchant_transaction_id', 'amount', 'description']
@@ -87,6 +88,20 @@ class Validator(object):
         optional_fields_dict = {'f_extended': '5', 'request_type': 'transaction_status'}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
+    def validate_data_init_credit(self):
+        mandatory_field_list = ['rs', 'merchant_transaction_id', 'user_ip', 'description', 'amount', 'currency',
+                                'name_on_card', 'street', 'zip', 'city', 'country', 'email', 'phone',
+                                'merchant_site_url']
+        optional_fields_dict = {'state': 'NA', 'card_bin': 'NA', 'bin_name': 'NA', 'bin_phone': '',
+                                'save_card': '', 'shipping_phone': '', 'shipping_email': '', 'shipping_state': '',
+                                'shipping_country': '', 'shipping_city': '', 'shipping_zip': '', 'shipping_street': ''}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
+
+    def validate_data_do_credit(self):
+        mandatory_field_list = ['init_transaction_id', 'cc']
+        optional_fields_dict = {'f_extended': '', 'expire': ''}
+        return self.__validate_process(mandatory_field_list, optional_fields_dict)
+
     def validate_data_init_p2p(self):
         mandatory_field_list = ['cardname', 'recipient_name', 'client_birth_date', 'rs', 'merchant_transaction_id',
                                 'user_ip', 'description', 'amount', 'currency', 'name_on_card', 'street', 'zip',
@@ -97,6 +112,6 @@ class Validator(object):
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
 
     def validate_data_do_p2p(self):
-        mandatory_field_list = ['init_transaction_id', 'cc', 'cvv', 'cc_2']
-        optional_fields_dict = {'f_extended': '', 'expire': ''}
+        mandatory_field_list = ['init_transaction_id', 'cc_2']
+        optional_fields_dict = {'f_extended': '', 'expire2': ''}
         return self.__validate_process(mandatory_field_list, optional_fields_dict)
