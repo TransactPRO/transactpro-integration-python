@@ -5,10 +5,21 @@ from .validator import Validator
 
 
 class GateClient:
-    def __init__(self, apiUrl, guid, pwd, verifySSL=True, save_card=None):
+    def __init__(self, api_url, guid, pwd, verify_ssl=True, save_card=None):
+        """
+        Gate client access data initialization for making some actions with API
+
+        Args:
+            api_url    (string): Api URL. Can be acquired via Integration manual.
+            guid       (string): Merchant GUID.
+            pwd:       (string): Unencrypted password. It will be encrypted by client.
+            verify_ssl (bool): Default: true. Must be set to false for test environment
+            save_card  (int): Set 1 to process recurrent transactions
+        """
+
         pwd_shal = hashlib.sha1(pwd)
-        self.access_data = {'apiUrl': apiUrl, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
-                            'verifySSL': verifySSL, 'save_card': save_card}
+        self.access_data = {'apiUrl': api_url, 'guid': guid, 'pwd': pwd_shal.hexdigest(),
+                            'verifySSL': verify_ssl, 'save_card': save_card}
 
     def __build_data(self, data):
         data['guid'] = self.access_data['guid']

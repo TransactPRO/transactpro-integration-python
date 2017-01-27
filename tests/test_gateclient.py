@@ -1,9 +1,10 @@
-__author__ = 'olga'
-
 import hashlib
 from unittest import TestCase
 from transactpro.gateclient import GateClient
 from mock import patch, Mock
+
+__author__ = 'olga'
+
 
 class TestGateClient(TestCase):
 
@@ -111,7 +112,7 @@ class TestGateClient(TestCase):
         expected_data['guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         req_class.executeRequest.assert_called_once_with('init_recurrent', expected_data)
-    
+
     @patch('transactpro.gateclient.Request')
     def test_charge_recurrent(self, req_mock):
         req_class = Mock()
@@ -202,8 +203,8 @@ class TestGateClient(TestCase):
         expected_data['account_guid'] = 'AAAA-AAAA-AAAA-AAAA'
         expected_data['pwd'] = hashlib.sha1('111').hexdigest()
         req_class.executeRequest.assert_called_once_with('cancel_dms', expected_data)
-        
-    
+
+
     @patch('transactpro.gateclient.Request')
     def test_status_request(self, req_mock):
         req_class = Mock()
